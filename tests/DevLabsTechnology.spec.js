@@ -180,7 +180,14 @@ test('User navigates to Data Engineering', async ({ page }) => {
 
 test('User navigates to IT Staff Augmentation', async ({ page }) => {
   const homePage = new DevLabsHomePage(page);
-  await page.goto('https://devlabstechnology.com/');
+  //await page.goto('https://devlabstechnology.com/');
+  
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+  
+
   await homePage.servicesMenu().hover();
   await page.waitForTimeout(1000);
   await page.getByRole('link', {
@@ -189,6 +196,52 @@ test('User navigates to IT Staff Augmentation', async ({ page }) => {
   await expect(page).toHaveURL(/staff-augmentation/i);
   await expect(
     homePage.staffAugmentationHeading()
+  ).toBeVisible();
+});
+
+test('User contacts experts from Service page', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.servicesMenu().hover();
+
+  await page.locator('a[href="/service/cloud-solutions/"]').first().click();
+
+  await expect(page).toHaveURL(/cloud-solutions/i);
+
+  
+  const talkToExpertsBtn = page
+    .getByRole('link', { name: 'Talk to Our Experts' })
+    .first();
+
+  await talkToExpertsBtn.scrollIntoViewIfNeeded();
+
+  await expect(talkToExpertsBtn).toBeVisible();
+
+  await talkToExpertsBtn.click();
+
+
+  await expect(page).toHaveURL(/contact/i);
+
+  await expect(
+    page.getByRole('heading', {
+      name: 'Contact',
+      exact: true
+    })
+  ).toBeVisible();
+
+
+  await page.getByText('Let’s Connect').scrollIntoViewIfNeeded();
+
+  await expect(
+    page.getByText('Let’s Connect')
   ).toBeVisible();
 });
 

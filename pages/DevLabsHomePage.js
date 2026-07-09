@@ -103,4 +103,19 @@ export class DevLabsHomePage {
             name: 'Staff Augmentation',
             exact: true
         }).first();
+    talkToOurExpertsButton = () =>
+    this.page.getByRole('link', {
+        name: /Talk To Our Experts/i
+    });
+
+    contactHeading = () =>
+    this.page.getByRole('heading', {
+        name: 'Contact',
+        exact: true
+    });
+
+    letsConnectHeading = () =>
+    this.page.getByRole('heading', {
+        name: /Let's Connect/i
+    });
 }
