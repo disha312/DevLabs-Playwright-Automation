@@ -67,4 +67,42 @@ export class DevLabsHomePage {
             name: 'Product Development',
             exact: true
         });
+
+    businessConsultingHeading = () =>
+        this.page.getByRole('heading', {
+            name: 'Business Consulting',
+            exact: true
+        });
+
+    salesforceServicesHeading = () =>
+        this.page.getByRole('heading', {
+            name: 'Salesforce Services',
+            exact: true
+        });
+
+    digitalTransformationHeading = () =>
+        this.page.getByRole('heading',{
+            name: 'Digital Transformation',
+            exact: true
+        }).first();
+
+
+
+    dataScienceHeading = () =>
+        this.page.getByRole('heading',{
+            name: 'Data Science',
+            exact: true
+        }).first();
+
+    dataEngineeringHeading = () =>
+        this.page.getByRole('heading',{
+            name: 'Data Engineering',
+            exact: true
+        }).first();
+
+    staffAugmentationHeading = () =>
+        this.page.getByRole('heading',{
+            name: 'IT Staff Augmentation',
+            exact: true
+        }).first();
 }
