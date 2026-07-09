@@ -104,13 +104,15 @@ test('User navigates to Product Development', async ({page}) => {
 });
 
 test('User navigates to Business Consulting',async ({page}) => {
+  const homePage = new DevLabsHomePage(page);
   test.setTimeout(60000);
   await page.goto('https://devlabstechnology.com/', {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   });
-  await page.getByRole('link', { name: 'Business Consulting' }).first().click();
-  //await page.locator('a[href="/service/business-consulting/"]').click();
+  await homePage.servicesMenu().hover();
+  //await page.getByRole('link', { name: 'Business Consulting' }).first().click();
+  await page.locator('a[href="/service/business-consulting/"]').first().click();
   await expect(page).toHaveURL(/business-consulting/i);
   await expect(
         page.getByRole('heading', { 
@@ -120,7 +122,7 @@ test('User navigates to Business Consulting',async ({page}) => {
         ).toBeVisible();
 });
 
-test.only('User navigates to Salesforce Service', async ({ page }) => {
+test('User navigates to Salesforce Service', async ({ page }) => {
   const homePage = new DevLabsHomePage(page);
   await page.goto('https://devlabstechnology.com/');
   await homePage.servicesMenu().hover();
