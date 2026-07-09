@@ -120,6 +120,20 @@ test('User navigates to Business Consulting',async ({page}) => {
         ).toBeVisible();
 });
 
+test.only('User navigates to Salesforce Service', async ({ page }) => {
+  const homePage = new DevLabsHomePage(page);
+  await page.goto('https://devlabstechnology.com/');
+  await homePage.servicesMenu().hover();
+  await page.waitForTimeout(1000);
+  await page.getByRole('link', {
+    name: 'Salesforce Service'
+  }).first().click();
+  await expect(page).toHaveURL(/salesforce-service/i);
+  await expect(
+    homePage.salesforceServiceAndSolutionsHeading()
+  ).toBeVisible();
+});
+
 test('User navigates to Digital Transformation', async ({ page }) => {
   const homePage = new DevLabsHomePage(page);
   await page.goto('https://devlabstechnology.com/');
@@ -169,7 +183,7 @@ test('User navigates to IT Staff Augmentation', async ({ page }) => {
   await page.waitForTimeout(1000);
   await page.getByRole('link', {
     name: 'IT Staff Augmentation'
-  }).click();
+  }).first().click();
   await expect(page).toHaveURL(/staff-augmentation/i);
   await expect(
     homePage.staffAugmentationHeading()

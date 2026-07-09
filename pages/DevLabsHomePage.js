@@ -74,9 +74,9 @@ export class DevLabsHomePage {
             exact: true
         });
 
-    salesforceServicesHeading = () =>
+    salesforceServiceAndSolutionsHeading = () =>
         this.page.getByRole('heading', {
-            name: 'Salesforce Services',
+            name: 'Salesforce Service and Solutions',
             exact: true
         });
 
@@ -85,8 +85,6 @@ export class DevLabsHomePage {
             name: 'Digital Transformation',
             exact: true
         }).first();
-
-
 
     dataScienceHeading = () =>
         this.page.getByRole('heading',{
@@ -102,7 +100,7 @@ export class DevLabsHomePage {
 
     staffAugmentationHeading = () =>
         this.page.getByRole('heading',{
-            name: 'IT Staff Augmentation',
+            name: 'Staff Augmentation',
             exact: true
         }).first();
 }
