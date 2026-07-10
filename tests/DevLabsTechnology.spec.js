@@ -20,7 +20,13 @@ test('User navigates to Services', async ({ page }) => {
 test('User navigates to About Us', async ({ page }) => {
 
   const homePage = new DevLabsHomePage(page);
-  await page.goto('https://devlabstechnology.com/');
+  //await page.goto('https://devlabstechnology.com/');
+  test.setTimeout(60000);
+
+  await page.goto('https://devlabstechnology.com/', {
+  waitUntil: 'domcontentloaded',
+  timeout: 60000
+});
   await homePage.aboutUsLink().click();
   await expect(page).toHaveURL(/about/i);
 });
@@ -152,7 +158,13 @@ test('User navigates to Digital Transformation', async ({ page }) => {
 
 test('User navigates to Data Science', async ({ page }) => {
   const homePage = new DevLabsHomePage(page);
-  await page.goto('https://devlabstechnology.com/');
+  //await page.goto('https://devlabstechnology.com/');
+  test.setTimeout(60000);
+
+  await page.goto('https://devlabstechnology.com/', {
+  waitUntil: 'domcontentloaded',
+  timeout: 60000
+});
   await homePage.servicesMenu().hover();
   await page.waitForTimeout(1000);
   await page.getByRole('link', {
@@ -242,6 +254,62 @@ test('User contacts experts from Service page', async ({ page }) => {
 
   await expect(
     page.getByText('Let’s Connect')
+  ).toBeVisible();
+});
+
+test('User submits Contact form successfully', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/contact/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.contactNameField().fill('Same');
+
+  await homePage.contactEmailField().fill('same12@gmail.com');
+
+  await homePage.contactAddressField().fill('1245/78 B Block XYZ');
+
+  await homePage.contactMessageField().fill(
+    'This is an automated Playwright test messages.'
+  );
+
+  await homePage.submitNowButton().click();
+
+  await page.waitForTimeout(5000);
+
+  await expect(
+  page.locator('.wpcf7-response-output')
+  ).toBeVisible();
+});
+
+test('User submits Contact form with invalid email', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/contact/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+  
+  await homePage.contactNameField().fill('Vanshika');
+
+  await homePage.contactEmailField().type('123');
+  
+  await homePage.submitNowButton().click();
+
+  await expect(
+    page.locator('.wpcf7-not-valid-tip').first()
+  ).toBeVisible();
+
+  await expect(
+    homePage.validationMessage()
   ).toBeVisible();
 });
 

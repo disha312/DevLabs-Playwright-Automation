@@ -118,4 +118,37 @@ export class DevLabsHomePage {
     this.page.getByRole('heading', {
         name: /Let's Connect/i
     });
+    contactNameField = () =>
+    this.page.getByRole('textbox', {
+        name: 'Your Name*'
+    });
+
+    contactEmailField = () =>
+    this.page.getByRole('textbox', {
+        name: 'Your Email*'
+    });
+
+    contactAddressField = () =>
+    this.page.getByRole('textbox', {
+        name: 'Your Address'
+    });
+
+    contactMessageField = () =>
+    this.page.getByRole('textbox', {
+        name: 'Write your Message'
+    });
+
+    submitNowButton = () =>
+    this.page.getByRole('button', {
+        name: 'Submit Now'
+    });
+
+    successMessage = () =>
+    this.page.locator('.wpcf7-response-output');
+
+    //emailValidationMessage = () =>
+    //this.page.getByText('Please enter an email address.');
+
+    validationMessage = () =>
+    this.page.locator('.wpcf7-not-valid-tip').first();
 }
