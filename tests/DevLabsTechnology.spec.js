@@ -2,15 +2,33 @@
 import {test, expect} from '@playwright/test';
 import { DevLabsHomePage } from '../pages/DevLabsHomePage';
 
-test('Open DevLabs Technology Homepage', async ({ page }) => 
+/*test('Open DevLabs Technology Homepage', async ({ page }) => 
     {
     await page.goto('https://devlabstechnology.com/');
     await expect(page).toHaveTitle(/DevLabs/i);
+});*/
+
+test('Open DevLabs Technology Homepage', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await expect(page).toHaveTitle(/DevLabs/i);
 });
 
 test('User navigates to Services', async ({ page }) => {
+    test.setTimeout(60000);
+
     const homePage = new DevLabsHomePage(page);
-    await page.goto('https://devlabstechnology.com/');
+
+    await page.goto('https://devlabstechnology.com/',{
+      waitUntil: 'domcontentloaded',
+      timeout: 60000
+    });
     await homePage.servicesMenu().click();
     await expect(page).toHaveURL(/services/);
     await expect(homePage.servicesHeading()).toBeVisible();
@@ -18,10 +36,11 @@ test('User navigates to Services', async ({ page }) => {
 });
 
 test('User navigates to About Us', async ({ page }) => {
+  
+   test.setTimeout(60000);
 
   const homePage = new DevLabsHomePage(page);
   //await page.goto('https://devlabstechnology.com/');
-  test.setTimeout(60000);
 
   await page.goto('https://devlabstechnology.com/', {
   waitUntil: 'domcontentloaded',
@@ -33,15 +52,25 @@ test('User navigates to About Us', async ({ page }) => {
 
 
 test('User navigates to Hire a Developer', async ({ page }) => {
+
+  test.setTimeout(60000);
+
   const homePage = new DevLabsHomePage(page);
-  await page.goto('https://devlabstechnology.com/');
+  await page.goto('https://devlabstechnology.com/', {
+  waitUntil: 'domcontentloaded',
+  timeout: 60000});
   await homePage.hireDeveloperLink().click();
   await expect(page).toHaveURL(/hire/i);
 });
 
 test('User navigates to Cloud Solutions services', async({page}) =>{
+
+  test.setTimeout(60000);
   const homePage = new DevLabsHomePage(page);
-  await page.goto('https://devlabstechnology.com/');
+  //await page.goto('https://devlabstechnology.com/');
+  await page.goto('https://devlabstechnology.com/', {
+  waitUntil: 'domcontentloaded',
+  timeout: 60000});
   await homePage.servicesMenu().hover();
   await homePage.cloudSolutionsLink().click();
   await expect(page).toHaveURL(/cloud-solutions/i);
@@ -337,8 +366,133 @@ test('User submits Contact form with blank Address', async ({ page }) => {
   page.locator('.wpcf7-response-output')
   ).toContainText(
   'One or more fields have an error. Please check and try again');
+});
+
+
+test('User views About Us information', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.aboutUsLink().click();
+
+  await expect(page).toHaveURL(/about/i);
+
+  await homePage.aboutOurCompanyHeading().scrollIntoViewIfNeeded();
+  await expect(
+    homePage.aboutOurCompanyHeading()
+  ).toBeVisible();
+
+  await homePage.ourValuesHeading().scrollIntoViewIfNeeded();
+  await expect(
+    homePage.ourValuesHeading()
+  ).toBeVisible();
+
+  await homePage.ourTeamHeading().scrollIntoViewIfNeeded();
+  await expect(
+    homePage.ourTeamHeading()
+  ).toBeVisible();
+
+  await homePage.contactUsHeading().scrollIntoViewIfNeeded();
+  await expect(
+    homePage.contactUsHeading()
+  ).toBeVisible();
 
 });
+
+test('User navigates to Services from Discover More', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.aboutUsLink().click();
+
+  await homePage.discoverMoreButton()
+    .scrollIntoViewIfNeeded();
+
+  await homePage.discoverMoreButton().click();
+
+  await expect(page).toHaveURL(/services/i);
+
+  await expect(
+    homePage.servicesHeading()
+  ).toBeVisible();
+
+});
+
+test('User views Hire a Developer technology categories', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.hireDeveloperLink().click();
+
+  await homePage.exploreMoreButton().click();
+
+  await page.waitForTimeout(5000);
+
+  await homePage.frontEndTechnologiesHeading()
+    .scrollIntoViewIfNeeded();
+
+  await expect(
+    homePage.frontEndTechnologiesHeading()
+  ).toBeVisible();
+
+  await homePage.backEndTechnologiesHeading()
+    .scrollIntoViewIfNeeded();
+
+  await expect(
+    homePage.backEndTechnologiesHeading()
+  ).toBeVisible();
+
+  await homePage.mobileTechnologiesHeading()
+    .scrollIntoViewIfNeeded();
+
+  await expect(
+    homePage.mobileTechnologiesHeading()
+  ).toBeVisible();
+
+  await homePage.crmTechnologiesHeading()
+    .scrollIntoViewIfNeeded();
+
+  await expect(
+    homePage.crmTechnologiesHeading()
+  ).toBeVisible();
+
+  await homePage.cloudComputingTechnologiesHeading()
+    .scrollIntoViewIfNeeded();
+
+  await expect(
+    homePage.cloudComputingTechnologiesHeading()
+  ).toBeVisible();
+
+  await homePage.qualityEngineeringHeading()
+    .scrollIntoViewIfNeeded();
+
+  await expect(
+    homePage.qualityEngineeringHeading()
+  ).toBeVisible();
+
+});
+
 
 
 

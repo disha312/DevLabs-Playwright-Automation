@@ -151,4 +151,66 @@ export class DevLabsHomePage {
 
     validationMessage = () =>
     this.page.locator('.wpcf7-not-valid-tip').first();
+
+    aboutUsLink = () =>
+    this.page.locator('#menu-item-20143')
+        .getByRole('link', { name: 'About Us' });
+
+    aboutOurCompanyHeading = () =>
+    this.page.getByText('ABOUT OUR COMPANY');
+
+    ourValuesHeading = () =>
+    this.page.getByText('// Our Values');
+
+    ourTeamHeading = () =>
+    this.page.getByText('OUR TEAM', { exact: true });
+
+    contactUsHeading = () =>
+    this.page.getByText('CONTACT US');
+
+    discoverMoreButton = () =>
+    this.page.getByRole('link', {
+        name: 'DISCOVER MORE'
+    });
+
+    servicesHeading = () =>
+    this.page.getByRole('heading', {
+        name: 'Services',
+        exact: true
+    });
+
+    exploreMoreButton = () =>
+    this.page.getByRole('link', {
+        name: 'EXPLORE MORE'
+    }).first();
+
+    frontEndTechnologiesHeading = () =>
+    this.page.getByRole('heading', {
+        name: 'Front-End Technologies'
+    });
+
+    backEndTechnologiesHeading = () =>
+    this.page.getByRole('heading', {
+        name: 'Back-End Technologies'
+    });
+
+    mobileTechnologiesHeading = () =>
+    this.page.getByRole('heading', {
+        name: 'Mobile Technologies'
+    });
+
+    crmTechnologiesHeading = () =>
+    this.page.getByRole('heading', {
+        name: 'CRM Technologies'
+    });
+
+    cloudComputingTechnologiesHeading = () =>
+    this.page.getByRole('heading', {
+        name: 'Cloud Computing Technologies'
+    });
+
+    qualityEngineeringHeading = () =>
+    this.page.getByRole('heading', {
+        name: 'Quality Engineering'
+    });
 }
