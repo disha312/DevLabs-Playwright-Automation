@@ -313,6 +313,33 @@ test('User submits Contact form with invalid email', async ({ page }) => {
   ).toBeVisible();
 });
 
+test('User submits Contact form with blank Address', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/contact/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.contactNameField().fill('bob');
+
+  await homePage.contactEmailField().fill('bob1@gmail.com');
+
+  // Address left blank
+  // Message left blank
+
+  await homePage.submitNowButton().click();
+
+  await expect(
+  page.locator('.wpcf7-response-output')
+  ).toContainText(
+  'One or more fields have an error. Please check and try again');
+
+});
+
 
 
 
