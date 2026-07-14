@@ -493,6 +493,34 @@ test('User views Hire a Developer technology categories', async ({ page }) => {
 
 });
 
+  test('User navigates to End to End Software Development', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.hireDeveloperLink().click();
+
+  await homePage.endToEndSoftwareDevelopmentLink()
+    .scrollIntoViewIfNeeded();
+
+  await homePage.endToEndSoftwareDevelopmentLink().click();
+
+  await expect(page).toHaveURL(/software-development/i);
+
+  await expect(
+    homePage.softwareDevelopmentHeading()
+  ).toBeVisible();
+
+});
+
+
+
 
 
 

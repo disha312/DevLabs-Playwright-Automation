@@ -213,4 +213,15 @@ export class DevLabsHomePage {
     this.page.getByRole('heading', {
         name: 'Quality Engineering'
     });
+
+    endToEndSoftwareDevelopmentLink = () =>
+    this.page.getByRole('link', {
+        name: 'End to End Software'
+    });
+
+    softwareDevelopmentHeading = () =>
+    this.page.getByRole('heading', {
+        name: 'Software Development',
+        exact: true
+    });
 }
