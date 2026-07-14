@@ -224,4 +224,15 @@ export class DevLabsHomePage {
         name: 'Software Development',
         exact: true
     });
+
+    staffAugmentationLink = () =>
+    this.page.getByRole('link', {
+        name: 'Staff Augmentation'
+    });
+
+    staffAugmentationPageHeading = () =>
+    this.page.getByRole('heading', {
+        name: 'Staff Augmentation',
+        exact: true
+    });
 }

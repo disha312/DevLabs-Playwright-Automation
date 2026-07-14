@@ -519,6 +519,32 @@ test('User views Hire a Developer technology categories', async ({ page }) => {
 
 });
 
+test('User navigates to Staff Augmentation', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.hireDeveloperLink().click();
+
+  await homePage.staffAugmentationLink()
+    .scrollIntoViewIfNeeded();
+
+  await homePage.staffAugmentationLink().click();
+
+  await expect(page).toHaveURL(/staff-augmentation/i);
+
+  await expect(
+    homePage.staffAugmentationPageHeading()
+  ).toBeVisible();
+
+});
+
 
 
 
