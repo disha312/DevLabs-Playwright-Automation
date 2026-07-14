@@ -643,6 +643,76 @@ test('User views Value content', async ({ page }) => {
 
 });
 
+test('User navigates to Payment Gateway Upgrade project', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.recentlyCompletedWorkSection()
+    .scrollIntoViewIfNeeded();
+
+  await homePage.paymentGatewayUpgradeLink().click();
+
+  await expect(page).toHaveURL(/payment-gateway-upgrade/i);
+
+  await expect(
+    homePage.paymentGatewayUpgradeHeading()
+  ).toBeVisible();
+
+});
+
+test('User navigates to Modernization of Legacy Application project', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.recentlyCompletedWorkSection()
+    .scrollIntoViewIfNeeded();
+
+  await homePage.modernizationOfLegacyApplicationLink().click();
+
+  await expect(page).toHaveURL(/modernization-of-legacy/i);
+
+  await expect(
+    homePage.modernizationOfLegacyApplicationHeading()
+  ).toBeVisible();
+
+});
+
+test.only('User reads a blog article', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.readMoreButton()
+    .scrollIntoViewIfNeeded();
+
+  await homePage.readMoreButton().click();
+
+  await expect(
+    homePage.blogArticleHeading()
+  ).toBeVisible();
+
+});
+
 
 
 

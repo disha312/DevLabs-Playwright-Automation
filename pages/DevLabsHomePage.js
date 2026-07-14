@@ -269,4 +269,38 @@ export class DevLabsHomePage {
 
     valueContent = () =>
     this.page.getByText('At DevLabs, every individual');
+
+    paymentGatewayUpgradeLink = () =>
+    this.page.getByRole('link', {
+        name: 'Payment Gateway Upgrade'
+    });
+
+    paymentGatewayUpgradeHeading = () =>
+    this.page.locator('#pxl-pxl_heading-896e91b-8832')
+        .getByRole('heading', {
+            name: 'Payment Gateway Upgrade'
+        });
+
+    recentlyCompletedWorkSection = () =>
+    this.page.getByText('RECENTLY COMPLETED WORK');
+
+    modernizationOfLegacyApplicationLink = () =>
+    this.page.getByRole('link', {
+        name: 'Modernization of Legacy'
+    });
+
+    modernizationOfLegacyApplicationHeading = () =>
+    this.page.locator('#pxl-pxl_heading-896e91b-1480')
+        .getByRole('heading', {
+            name: 'Modernization of Legacy'
+        });
+
+    readMoreButton = () =>
+    this.page.locator('.pxl-item--readmore').first();
+
+    blogArticleHeading = () =>
+    this.page.locator('#pxl-pxl_heading-896e91b-7700')
+        .getByRole('heading', {
+            name: 'Building Tailored Software'
+        });
 }
