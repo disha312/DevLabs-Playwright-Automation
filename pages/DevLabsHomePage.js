@@ -235,4 +235,38 @@ export class DevLabsHomePage {
         name: 'Staff Augmentation',
         exact: true
     });
+
+    whyChooseUsSection = () =>
+    this.page.getByText('WHY CHOOSE US');
+
+    ourMissionButton = () =>
+    this.page.getByText('Our Mission', { exact: true });
+
+    ourVisionButton = () =>
+    this.page.getByText('Our Vision', { exact: true });
+
+    ourValueButton = () =>
+    this.page.getByText('Our Value', { exact: true });
+
+    ourMissionButton = () =>
+    this.page.locator('span')
+        .filter({ hasText: 'Our Mission' })
+        .first();
+
+    missionContent = () =>
+    this.page.getByText('DevLabs mission is to help');
+
+    ourVisionButton = () =>
+    this.page.locator('span')
+        .filter({ hasText: 'Our Vision' })
+        .first();
+
+    visionContent = () =>
+    this.page.getByText('DevLabs has been able to');
+
+    ourValueButton = () =>
+    this.page.getByText('Our Value', { exact: true });
+
+    valueContent = () =>
+    this.page.getByText('At DevLabs, every individual');
 }

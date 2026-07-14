@@ -545,6 +545,104 @@ test('User navigates to Staff Augmentation', async ({ page }) => {
 
 });
 
+test('User views Why Choose Us section', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.whyChooseUsSection()
+    .scrollIntoViewIfNeeded();
+
+  await expect(
+    homePage.whyChooseUsSection()
+  ).toBeVisible();
+
+  await expect(
+    homePage.ourMissionButton()
+  ).toBeVisible();
+
+  await expect(
+    homePage.ourVisionButton()
+  ).toBeVisible();
+
+  await expect(
+    homePage.ourValueButton()
+  ).toBeVisible();
+
+});
+
+test('User views Mission content', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.whyChooseUsSection()
+    .scrollIntoViewIfNeeded();
+
+  await homePage.ourMissionButton().click();
+
+  await expect(
+    homePage.missionContent()
+  ).toBeVisible();
+
+});
+
+test('User views Vision content', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.whyChooseUsSection()
+    .scrollIntoViewIfNeeded();
+
+  await homePage.ourVisionButton().click();
+
+  await expect(
+    homePage.visionContent()
+  ).toBeVisible();
+
+});
+
+test('User views Value content', async ({ page }) => {
+
+  test.setTimeout(60000);
+
+  const homePage = new DevLabsHomePage(page);
+
+  await page.goto('https://devlabstechnology.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await homePage.whyChooseUsSection()
+    .scrollIntoViewIfNeeded();
+
+  await homePage.ourValueButton().click();
+
+  await expect(
+    homePage.valueContent()
+  ).toBeVisible();
+
+});
+
 
 
 
