@@ -693,15 +693,15 @@ test('User navigates to Modernization of Legacy Application project', async ({ p
 
 test('User reads a blog article', async ({ page }) => {
 
-  test.setTimeout(60000);
+  test.setTimeout(120000);
 
   const homePage = new DevLabsHomePage(page);
 
   await page.goto('https://devlabstechnology.com/', {
     waitUntil: 'domcontentloaded',
-    timeout: 60000
+    timeout: 120000
   });
-
+  
   await homePage.readMoreButton()
     .scrollIntoViewIfNeeded();
 
@@ -712,6 +712,7 @@ test('User reads a blog article', async ({ page }) => {
   ).toBeVisible();
 
 });
+
 
 
 

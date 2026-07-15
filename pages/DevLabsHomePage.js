@@ -296,7 +296,9 @@ export class DevLabsHomePage {
         });
 
     readMoreButton = () =>
-    this.page.locator('.pxl-item--readmore').first();
+    this.page.getByRole('link', {
+        name: /Read More/i
+    }).nth(2);
 
     blogArticleHeading = () =>
     this.page.locator('#pxl-pxl_heading-896e91b-7700')
