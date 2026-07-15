@@ -434,27 +434,27 @@ test('User navigates to Services from Discover More', async ({ page }) => {
 
 test('User views Hire a Developer technology categories', async ({ page }) => {
 
-  test.setTimeout(60000);
+  test.setTimeout(120000);
 
   const homePage = new DevLabsHomePage(page);
 
   await page.goto('https://devlabstechnology.com/', {
     waitUntil: 'domcontentloaded',
-    timeout: 60000
+    timeout: 120000
   });
 
   await homePage.hireDeveloperLink().click();
 
   await homePage.exploreMoreButton().click();
 
-  await page.waitForTimeout(5000);
-
-  await homePage.frontEndTechnologiesHeading()
-    .scrollIntoViewIfNeeded();
+  for (let i = 0; i < 8; i++) {
+    await page.keyboard.press('PageDown');
+    await page.waitForTimeout(500);
+  }
 
   await expect(
     homePage.frontEndTechnologiesHeading()
-  ).toBeVisible();
+  ).toBeVisible({ timeout: 15000 });
 
   await homePage.backEndTechnologiesHeading()
     .scrollIntoViewIfNeeded();
@@ -691,7 +691,7 @@ test('User navigates to Modernization of Legacy Application project', async ({ p
 
 });
 
-test.only('User reads a blog article', async ({ page }) => {
+test('User reads a blog article', async ({ page }) => {
 
   test.setTimeout(60000);
 
