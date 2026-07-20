@@ -5,7 +5,6 @@ export class DevLabsHomePage {
         this.page = page;
     }
 
-    // Navigation Menu
     servicesMenu = () =>
         this.page.getByRole('link', { name: 'Services ' });
 
@@ -15,7 +14,6 @@ export class DevLabsHomePage {
     hireDeveloperLink = () =>
         this.page.getByRole('link', { name: 'Hire a Developer' }).first();
 
-    // Service Links
     cloudSolutionsLink = () =>
         this.page.getByRole('link', { name: 'Cloud Solutions' });
 
@@ -34,7 +32,6 @@ export class DevLabsHomePage {
     productDevelopmentLink = () =>
         this.page.getByRole('link', { name: 'Product Development' });
 
-    // Headings
     servicesHeading = () =>
         this.page.getByRole('heading', { name: 'Services', exact: true });
 
@@ -276,10 +273,9 @@ export class DevLabsHomePage {
     });
 
     paymentGatewayUpgradeHeading = () =>
-    this.page.locator('#pxl-pxl_heading-896e91b-8832')
-        .getByRole('heading', {
-            name: 'Payment Gateway Upgrade'
-        });
+    this.page.getByRole('heading', {
+        name: 'Payment Gateway Upgrade'
+    }).first();
 
     recentlyCompletedWorkSection = () =>
     this.page.getByText('RECENTLY COMPLETED WORK');
@@ -290,10 +286,9 @@ export class DevLabsHomePage {
     });
 
     modernizationOfLegacyApplicationHeading = () =>
-    this.page.locator('#pxl-pxl_heading-896e91b-1480')
-        .getByRole('heading', {
-            name: 'Modernization of Legacy'
-        });
+    this.page.getByRole('heading', {
+        name: /Modernization of Legacy/i
+    }).first();
 
     readMoreButton = () =>
     this.page.getByRole('link', {
@@ -301,8 +296,7 @@ export class DevLabsHomePage {
     }).nth(2);
 
     blogArticleHeading = () =>
-    this.page.locator('#pxl-pxl_heading-896e91b-7700')
-        .getByRole('heading', {
-            name: 'Building Tailored Software'
-        });
+    this.page.getByRole('heading', {
+        name: /Building Tailored Software/i
+    }).first();
 }

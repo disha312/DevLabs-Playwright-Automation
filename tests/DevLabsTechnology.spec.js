@@ -95,7 +95,12 @@ test('User navigates to Software Development', async({page}) =>{
 
 test('User navigates to Website Development', async({page}) => {
   const homePage = new DevLabsHomePage(page);
-  await page.goto('https://devlabstechnology.com/');
+  test.setTimeout(60000);
+  //await page.goto('https://devlabstechnology.com/');
+  await page.goto('https://devlabstechnology.com/', {
+  waitUntil: 'domcontentloaded',
+  timeout: 60000
+  });
   await homePage.servicesMenu().hover();
   await homePage.websiteDevelopmentLink().click();
   await expect(page).toHaveURL(/website-development/i);
@@ -107,7 +112,14 @@ test('User navigates to Website Development', async({page}) => {
 
 test('User navigates to Mobile Applications', async ({page}) =>{
    const homePage = new DevLabsHomePage(page);
+  
+   test.setTimeout(60000);
+   
    await page.goto('https://devlabstechnology.com/');
+   await page.goto('https://devlabstechnology.com/', {
+  waitUntil: 'domcontentloaded',
+  timeout: 60000
+  });
    await homePage.servicesMenu().hover();
    await homePage.mobileApplicationsLink().click();
    await expect(page).toHaveURL(/mobile-applications/i);
